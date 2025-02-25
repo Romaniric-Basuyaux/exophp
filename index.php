@@ -5,15 +5,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST["email"] ?? ""; // Récuperation de l'e-mail
     $message = $_POST["message"] ?? ""; // Récuperation du message
 
-
     $file = "$message.txt";
 
     $data = "$name $email $message";
-    echo file_put_contents($file, $data);
 
+    file_put_contents($file, $data);
+
+    // Créer une chaîne contenant les informations à enregistrer
+    $data = 'Nom:' . $name . "<br> Email :" . $email ."<br> Message :" . $message . "<br><br>";
+
+    // Ouvrir le fichier en mode ajout
+    file_put_contents($file, $data, FILE_APPEND);
+
+    // Ajouter un message de confirmation à la session
+    $_SESSION['message'] = "Message envoyé !";
+
+    // Rediriger vers la page du formulaire avec le message de confirmation
+    header("Location: index.php");
+    exit;
 }
 
 
+
+
+/*// Affichage du msg stocké en session
+if (isset($_SESSION["message"])) {
+    echo "<p>" . htmlspecialchars($_SESSION["message"]) . "</p>";
+    //Supp le msg stocké en session
+    unset($_SESSION["message"]);
+}*/
 
 
 ?>
