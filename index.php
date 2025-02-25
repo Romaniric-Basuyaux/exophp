@@ -2,7 +2,7 @@
 session_start();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST["name"] ?? ""; //Recupération du nom
-    $email = $_POST["email"] ?? ""; // Récuperation de l'email
+    $email = $_POST["email"] ?? ""; // Récuperation de l'e-mail
     $message = $_POST["message"] ?? ""; // Récuperation du message
 
 
